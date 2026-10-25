@@ -9,6 +9,7 @@ export default function Navbar({
   onOpenCart,
   onOpenWishlist,
   onSelectItem,
+  onSelectCategory,
   allProducts,
 }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -21,6 +22,13 @@ export default function Navbar({
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.category.toLowerCase().includes(searchQuery.toLowerCase())
       ).slice(0, 5);
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link.name);
+    if (link.category && onSelectCategory) {
+      onSelectCategory(link.category);
+    }
+  };
 
   return (
     <>
@@ -41,16 +49,17 @@ export default function Navbar({
           </a>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-8 text-xs font-semibold text-stone-600">
+          <nav className="hidden md:flex items-center space-x-7 text-xs font-semibold text-stone-600">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setActiveLink(link.name)}
+                onClick={() => handleLinkClick(link)}
                 className={`transition-colors duration-200 hover:text-[#c81e28] cursor-pointer ${
                   activeLink === link.name ? 'text-[#c81e28] font-bold' : ''
-                }`}
+                } ${link.category === 'Indian' ? 'flex items-center gap-1 text-amber-700' : ''}`}
               >
+                {link.category === 'Indian' && <span className="text-xs">🇮🇳</span>}
                 {link.name}
               </a>
             ))}
@@ -73,7 +82,7 @@ export default function Navbar({
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="Search menu..."
+                      placeholder="Search Indian dishes, pizza, burgers..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       autoFocus
@@ -104,7 +113,7 @@ export default function Navbar({
                           <img src={item.image} alt={item.name} className="w-9 h-9 object-cover rounded-md" />
                           <div className="flex-1 min-w-0">
                             <h5 className="text-xs font-bold text-stone-900 truncate">{item.name}</h5>
-                            <span className="text-[11px] text-[#c81e28] font-extrabold">${item.price.toFixed(2)}</span>
+                            <span className="text-[11px] text-[#c81e28] font-extrabold">₹{item.price.toFixed(2)}</span>
                           </div>
                         </div>
                       ))}
@@ -143,15 +152,15 @@ export default function Navbar({
             </button>
 
             {/* Language / Currency text */}
-            <span className="text-[11px] font-medium text-stone-400 hidden sm:inline-block border-l border-stone-200 pl-4">
-              English - $USD
+            <span className="text-[11px] font-semibold text-stone-500 hidden sm:inline-block border-l border-stone-200 pl-4">
+              English - ₹INR
             </span>
           </div>
 
         </div>
       </header>
 
-      {/* Floating Right Red Tab (from mockup: small red tab on the right edge showing items & total) */}
+      {/* Floating Right Red Tab showing items & total in ₹ */}
       <div
         onClick={onOpenCart}
         className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[#c81e28] hover:bg-[#b01720] text-white py-3 px-2 rounded-l-xl shadow-xl flex flex-col items-center gap-1.5 cursor-pointer transition-all hover:pl-3 group"
@@ -162,7 +171,7 @@ export default function Navbar({
           {cartCount} {cartCount === 1 ? 'Item' : 'Items'}
         </span>
         <span className="text-[11px] font-black bg-white/20 px-1.5 py-0.5 rounded text-white">
-          ${cartTotal.toFixed(2)}
+          ₹{cartTotal.toFixed(2)}
         </span>
       </div>
     </>

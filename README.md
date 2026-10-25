@@ -4,20 +4,22 @@ A food e-commerce & restaurant frontend built with **React 19**, **Vite**, **Tai
 
 ## 🍔 Features
 
-- **Modern Mockup-Matched Layout**:
-  - **Top Accent Navbar**: Navigation links, live search bar, wishlist counter, cart counter, and floating right-edge cart drawer tab.
+- **Modern Layout & Indian Food Menu**:
+  - **Top Accent Navbar**: Navigation links including Indian Food, live search bar, wishlist counter, cart counter, and floating right-edge cart drawer tab (priced in Indian Rupees `₹INR`).
   - **3-Panel Hero Showcase**:
     - Left banner: *"The Goodness of the Best Food"* (Grilled BBQ Burgers) with discount callout and *"Shop Now"* CTA.
     - Top-right banner: *"Burger House — 15% Off"* with crispy double smash burger.
     - Bottom-right banner: *"Healthy Foods — Mega Discount 35%"* with fresh organic bowls.
   - **New More Flavors Menu**:
-    - Sub-tabs: *Best Selling Products* & *Latest Products*.
-    - Food cards with 5-star ratings, pricing, and hover pill buttons (*Add to Cart* & *Quick View*).
+    - Interactive Category Pills: **All Menu**, **Indian Specials 🇮🇳**, **Pizza**, **Burgers**, **Italian**, and **Fast Food**.
+    - Sub-tabs: *All Items*, *Best Selling Products* & *Latest Products*.
+    - Rich Indian dishes: Butter Chicken, Hyderabadi Dum Biryani, Shahi Paneer, Masala Dosa, Chole Bhature, Tandoori Chicken Tikka, Dal Makhani, Samosa Chaat, Paneer Tikka Shashlik, Gulab Jamun with Rabri.
+    - Food cards with 5-star ratings, Indian Rupee (`₹`) pricing, and hover pill buttons (*Add to Cart* & *Quick View*).
   - **Awarded Restaurant & Grilled Foods**:
-    - Business lunch feature banner (\$30.90) with fresh salad bowl.
+    - Business lunch feature banner (₹299.00) with fresh salad bowl.
     - Dark *"Fresh & Grilled Foods"* card and 3-item food carousel row with navigation arrows.
   - **Our Special Recipes**:
-    - 3 signature chef dishes (Artisanal Burger, Mediterranean Salad, Super Green Broccoli Quinoa Bowl).
+    - 3 signature chef dishes (Royal Hyderabadi Dum Biryani, Smoked Butter Chicken & Naan, Artisanal Double Burger Platter).
   - **Our Testimonial (Circular Design)**:
     - Chef Tara Rulse testimonial surrounded by animated floating fresh ingredients (bell pepper, basil, tomato, garlic, chili).
   - **Corporate Applications**:
@@ -25,8 +27,8 @@ A food e-commerce & restaurant frontend built with **React 19**, **Vite**, **Tai
 - **Interactive Animations**:
   - Image hover scales and micro-interactions.
   - Instant button feedback and cart badge bouncing.
-  - Interactive Slide-Out **Cart Drawer** with coupon codes (`BITE20` for 20% off), free shipping threshold tracker, and confetti checkout simulation.
-  - Interactive **Quick View Modal** with spice level and toppings customizer.
+  - Interactive Slide-Out **Cart Drawer** with coupon codes (`BITE20` for 20% off), free shipping threshold tracker (₹499), and confetti checkout simulation.
+  - Interactive **Quick View Modal** with spice level and toppings customizer in Indian Rupees (`₹`).
   - Slide-out **Wishlist Drawer**.
 
 ---

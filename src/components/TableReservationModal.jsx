@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { X, Calendar, Clock, Users, Utensils, CheckCircle2, Sparkles } from 'lucide-react';
+import { X, Calendar, Clock, Users, Utensils, CheckCircle2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function TableReservationModal({ isOpen, onClose, onBookingSuccess }) {
-  if (!isOpen) return null;
-
   const [guests, setGuests] = useState(2);
   const [date, setDate] = useState('2026-10-26');
   const [time, setTime] = useState('19:30');
@@ -12,6 +10,8 @@ export default function TableReservationModal({ isOpen, onClose, onBookingSucces
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+
+  if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();

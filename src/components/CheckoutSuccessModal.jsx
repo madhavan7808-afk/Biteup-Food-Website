@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Bike, Clock, MapPin, Sparkles, X, ChevronRight } from 'lucide-react';
+import { CheckCircle2, Bike, X, ChevronRight } from 'lucide-react';
 
 export default function CheckoutSuccessModal({ orderData, onClose }) {
   if (!orderData) return null;
@@ -26,7 +26,7 @@ export default function CheckoutSuccessModal({ orderData, onClose }) {
         </div>
 
         <span className="text-xs font-black uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3.5 py-1 rounded-full inline-block">
-          Order #BU-{Math.floor(100000 + Math.random() * 900000)} Placed
+          Order #{orderData.orderId || 'BU-849201'} Placed
         </span>
 
         <h3 className="text-2xl font-black font-heading text-stone-900 mt-2">
@@ -59,7 +59,7 @@ export default function CheckoutSuccessModal({ orderData, onClose }) {
           </div>
         </div>
 
-        {/* Order Breakdown */}
+        {/* Order Breakdown in INR */}
         <div className="mt-4 pt-4 border-t border-stone-100 text-xs text-stone-600 space-y-1 text-left">
           <div className="flex justify-between font-bold text-stone-900">
             <span>Items Ordered:</span>
@@ -68,12 +68,12 @@ export default function CheckoutSuccessModal({ orderData, onClose }) {
           {orderData.savings > 0 && (
             <div className="flex justify-between text-emerald-600 font-bold">
               <span>Coupon Discount:</span>
-              <span>-${orderData.savings.toFixed(2)}</span>
+              <span>-₹{orderData.savings.toFixed(2)}</span>
             </div>
           )}
           <div className="flex justify-between font-black text-stone-950 text-sm pt-1 border-t border-dashed border-stone-200">
             <span>Total Paid:</span>
-            <span className="text-red-600 font-heading text-base">${orderData.total.toFixed(2)}</span>
+            <span className="text-red-600 font-heading text-base">₹{orderData.total.toFixed(2)}</span>
           </div>
         </div>
 

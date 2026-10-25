@@ -3,28 +3,27 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 export default function PromoBanner({
   onBookLunch,
-  onAddToCart,
   onQuickView,
 }) {
   const rowProducts = [
     {
       id: 'promo-p1',
       name: 'Cheese Burger Meal',
-      price: 29.00,
+      price: 290.00,
       rating: 5,
       image: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=400&q=80',
     },
     {
       id: 'promo-p2',
       name: 'Spicy Margherita',
-      price: 12.90,
+      price: 220.00,
       rating: 5,
       image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
     },
     {
       id: 'promo-p3',
       name: 'Melted Chicken Toast',
-      price: 15.90,
+      price: 180.00,
       rating: 5,
       image: 'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=400&q=80',
     },
@@ -45,7 +44,7 @@ export default function PromoBanner({
           </h2>
 
           <p className="text-stone-500 text-xs sm:text-sm font-medium">
-            Only this month business lunch from <strong className="text-[#c81e28] font-bold">$30.90</strong>
+            Only this month business lunch from <strong className="text-[#c81e28] font-bold">₹299.00</strong>
           </p>
 
           <div className="pt-3">
@@ -53,7 +52,7 @@ export default function PromoBanner({
               onClick={onBookLunch}
               className="bg-[#c81e28] hover:bg-[#b01720] text-white font-bold text-xs uppercase tracking-wider px-6 py-2.5 rounded-full shadow-md transition-all active:scale-95 cursor-pointer"
             >
-              READ MORE
+              ORDER BUSINESS LUNCH
             </button>
           </div>
         </div>
@@ -95,7 +94,7 @@ export default function PromoBanner({
               onClick={onBookLunch}
               className="bg-[#c81e28] hover:bg-[#b01720] text-white text-[11px] font-bold uppercase tracking-wider px-5 py-2 rounded-md transition-all cursor-pointer active:scale-95"
             >
-              READ MORE
+              EXPLORE MORE
             </button>
           </div>
         </div>
@@ -127,7 +126,7 @@ export default function PromoBanner({
                     {item.name}
                   </h4>
                   <p className="text-xs font-black text-[#c81e28]">
-                    ${item.price.toFixed(2)}
+                    ₹{item.price.toFixed(2)}
                   </p>
                 </div>
               </div>

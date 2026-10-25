@@ -6,9 +6,10 @@ import {
   Mail, 
   Clock, 
   Send, 
-  CheckCircle2,
-  Heart
+  CheckCircle2
 } from 'lucide-react';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer({ onOpenReservation }) {
   const [email, setEmail] = useState('');
@@ -176,7 +177,7 @@ export default function Footer({ onOpenReservation }) {
 
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-          <p>© {new Date().getFullYear()} BiteUp Foods Inc. All rights reserved. Handcrafted with passion.</p>
+          <p>© {CURRENT_YEAR} BiteUp Foods Inc. All rights reserved. Handcrafted with passion.</p>
           <div className="flex items-center space-x-4">
             <span className="text-[11px]">Privacy Policy</span>
             <span>•</span>

@@ -54,7 +54,7 @@ export default function WishlistModal({
                 </p>
                 <button
                   onClick={onClose}
-                  className="bg-stone-900 text-white font-bold text-xs px-5 py-2.5 rounded-xl hover:bg-stone-800 transition-colors"
+                  className="bg-stone-900 text-white font-bold text-xs px-5 py-2.5 rounded-xl hover:bg-stone-800 transition-colors cursor-pointer"
                 >
                   Browse Menu
                 </button>
@@ -72,7 +72,7 @@ export default function WishlistModal({
                     <h5 className="text-sm font-black text-stone-900 truncate font-heading">
                       {item.name}
                     </h5>
-                    <p className="text-xs font-bold text-red-600">${item.price.toFixed(2)}</p>
+                    <p className="text-xs font-bold text-red-600">₹{item.price.toFixed(2)}</p>
                     
                     <button
                       onClick={() => {

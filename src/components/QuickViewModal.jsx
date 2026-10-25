@@ -8,15 +8,14 @@ import {
   Plus, 
   Minus, 
   ShoppingBag,
-  Sparkles,
   Heart
 } from 'lucide-react';
 
 const EXTRA_TOPPINGS = [
-  { id: 'top-1', name: 'Extra Melted Aged Cheddar', price: 1.50 },
-  { id: 'top-2', name: 'Crispy Double Smoked Bacon', price: 2.20 },
-  { id: 'top-3', name: 'Signature White Truffle Aioli', price: 1.80 },
-  { id: 'top-4', name: 'Grilled Spicy Jalapeño Rings', price: 1.00 },
+  { id: 'top-1', name: 'Extra Melted Aged Cheddar', price: 40.00 },
+  { id: 'top-2', name: 'Crispy Paneer / Bacon Bites', price: 50.00 },
+  { id: 'top-3', name: 'Signature Mint Chutney & Garlic Dip', price: 30.00 },
+  { id: 'top-4', name: 'Grilled Spicy Jalapeño & Green Chilies', price: 25.00 },
 ];
 
 export default function QuickViewModal({ 
@@ -26,12 +25,14 @@ export default function QuickViewModal({
   onToggleWishlist, 
   isWishlisted 
 }) {
-  if (!product) return null;
-
   const [quantity, setQuantity] = useState(1);
-  const [selectedSpice, setSelectedSpice] = useState(product.spicyLevel || 1);
+  const [selectedSpice, setSelectedSpice] = useState(1);
   const [selectedToppings, setSelectedToppings] = useState([]);
   const [isAdded, setIsAdded] = useState(false);
+
+  if (!product) return null;
+
+  const currentSpice = product.spicyLevel || selectedSpice;
 
   const toggleTopping = (toppingId) => {
     if (selectedToppings.includes(toppingId)) {
@@ -55,7 +56,7 @@ export default function QuickViewModal({
       ...product,
       price: unitPrice,
       customizations: {
-        spiceLevel: selectedSpice,
+        spiceLevel: currentSpice,
         toppings: selectedToppings,
       },
       quantity,
@@ -146,7 +147,7 @@ export default function QuickViewModal({
               <label className="text-xs font-bold text-stone-900 flex items-center justify-between">
                 <span>Spiciness Level:</span>
                 <span className="text-red-600 uppercase font-black text-[11px]">
-                  {selectedSpice === 1 ? 'Mild' : selectedSpice === 2 ? 'Medium Spicy' : selectedSpice === 3 ? 'Hot' : 'Fiery Inferno 🔥'}
+                  {currentSpice === 1 ? 'Mild' : currentSpice === 2 ? 'Medium Spicy' : currentSpice === 3 ? 'Hot & Spicy' : 'Fiery Inferno 🔥'}
                 </span>
               </label>
               <div className="grid grid-cols-4 gap-1.5">
@@ -156,12 +157,12 @@ export default function QuickViewModal({
                     type="button"
                     onClick={() => setSelectedSpice(level)}
                     className={`py-1.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
-                      selectedSpice === level
+                      currentSpice === level
                         ? 'bg-red-600 text-white shadow-sm'
                         : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                     }`}
                   >
-                    <Flame className={`w-3 h-3 ${selectedSpice === level ? 'text-amber-300 fill-amber-300' : 'text-stone-400'}`} />
+                    <Flame className={`w-3 h-3 ${currentSpice === level ? 'text-amber-300 fill-amber-300' : 'text-stone-400'}`} />
                     <span>Lvl {level}</span>
                   </button>
                 ))}
@@ -194,7 +195,7 @@ export default function QuickViewModal({
                         </div>
                         <span>{top.name}</span>
                       </div>
-                      <span className="font-extrabold text-stone-900">+${top.price.toFixed(2)}</span>
+                      <span className="font-extrabold text-stone-900">+₹{top.price.toFixed(2)}</span>
                     </div>
                   );
                 })}
@@ -225,7 +226,7 @@ export default function QuickViewModal({
                 <div className="text-right">
                   <span className="text-[10px] text-stone-400 uppercase font-bold block">Total Amount</span>
                   <span className="text-xl font-black text-red-600 font-heading">
-                    ${totalPrice.toFixed(2)}
+                    ₹{totalPrice.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -246,7 +247,7 @@ export default function QuickViewModal({
                 ) : (
                   <>
                     <ShoppingBag className="w-4 h-4" />
-                    <span>Add To Basket • ${totalPrice.toFixed(2)}</span>
+                    <span>Add To Basket • ₹{totalPrice.toFixed(2)}</span>
                   </>
                 )}
               </button>

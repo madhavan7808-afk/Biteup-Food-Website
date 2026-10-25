@@ -23,12 +23,19 @@ export default function ProductCard({
       onClick={() => onQuickView(product)}
       className="group relative bg-white border border-stone-200/90 rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:border-stone-300 flex flex-col justify-between cursor-pointer"
     >
+      {/* Category or Chef Badge if present */}
+      {product.badge && (
+        <span className={`absolute top-3 left-3 z-10 ${product.badgeColor || 'bg-[#c81e28]'} text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm`}>
+          {product.badge}
+        </span>
+      )}
+
       {/* Food Image Container with Hover Action Buttons Overlay */}
       <div className="relative w-full h-44 sm:h-48 rounded-lg overflow-hidden flex items-center justify-center p-2 mb-3 bg-stone-50/50">
         <img
           src={product.image}
           alt={product.name}
-          className={`w-full h-full object-contain transition-transform duration-500 ${
+          className={`w-full h-full object-cover rounded-lg transition-transform duration-500 ${
             isHovered ? 'scale-108' : 'scale-100'
           }`}
           loading="lazy"
@@ -90,14 +97,14 @@ export default function ProductCard({
           {product.name}
         </h4>
 
-        {/* Price */}
+        {/* Price in Indian Rupee */}
         <div className="flex items-center justify-center gap-2 pt-0.5">
           <span className="text-xs sm:text-sm font-extrabold text-[#c81e28]">
-            ${product.price.toFixed(2)}
+            ₹{product.price.toFixed(2)}
           </span>
           {product.originalPrice && (
             <span className="text-[11px] text-stone-400 line-through">
-              ${product.originalPrice.toFixed(2)}
+              ₹{product.originalPrice.toFixed(2)}
             </span>
           )}
         </div>

@@ -18,21 +18,22 @@ import { PRODUCTS, SPECIAL_RECIPES } from './data/foodData';
 export default function App() {
   const [cartItems, setCartItems] = useState([
     {
-      id: 'prod-1',
-      name: 'Yummy Pasta & Noodles',
-      price: 18.00,
-      image: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=600&q=80',
+      id: 'prod-ind-1',
+      name: 'Butter Chicken (Murgh Makhani)',
+      price: 320.00,
+      image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80',
       quantity: 1,
     },
     {
-      id: 'prod-4',
-      name: 'Crispy Golden Sesame Patties',
-      price: 12.90,
-      image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80',
+      id: 'prod-1',
+      name: 'Yummy Pasta & Noodles',
+      price: 240.00,
+      image: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=600&q=80',
       quantity: 1,
     }
   ]);
-  const [wishlistIds, setWishlistIds] = useState(['prod-2']);
+  const [wishlistIds, setWishlistIds] = useState(['prod-ind-2']);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   // Modals & Panels
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -44,6 +45,14 @@ export default function App() {
   const showToast = (title, message = '', type = 'cart') => {
     setToast({ title, message, type });
     setTimeout(() => setToast(null), 3000);
+  };
+
+  const handleSelectCategory = (category) => {
+    setSelectedCategory(category);
+    const el = document.getElementById('menu');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleAddToCart = (product, qty = 1) => {
@@ -114,25 +123,22 @@ export default function App() {
         onOpenCart={() => setIsCartOpen(true)}
         onOpenWishlist={() => setIsWishlistOpen(true)}
         onSelectItem={(item) => setQuickViewProduct(item)}
+        onSelectCategory={handleSelectCategory}
         allProducts={PRODUCTS}
       />
 
       <main>
         {/* Screen 1: Hero Section */}
         <HeroSection
-          onShopNow={() => {
-            const el = document.getElementById('menu');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          onSelectCategory={() => {
-            const el = document.getElementById('menu');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onShopNow={() => handleSelectCategory('All')}
+          onSelectCategory={handleSelectCategory}
         />
 
-        {/* Screen 1: NEW MORE FLAVORS */}
+        {/* Screen 1: NEW MORE FLAVORS Menu with Indian Food & Categories */}
         <MenuSection
           products={PRODUCTS}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
           onAddToCart={handleAddToCart}
           onQuickView={(prod) => setQuickViewProduct(prod)}
         />
@@ -143,7 +149,7 @@ export default function App() {
             handleAddToCart({
               id: 'lunch-special',
               name: 'NY Awarded Business Lunch',
-              price: 30.90,
+              price: 299.00,
               image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80',
             });
             setIsCartOpen(true);
@@ -159,13 +165,13 @@ export default function App() {
             handleAddToCart({
               id: recipe.id,
               name: recipe.title,
-              price: 22.00,
+              price: 260.00,
               image: recipe.image,
             });
           }}
         />
 
-        {/* Screen 2: Our Testimonial (Circular with floating ingredients) */}
+        {/* Screen 2: Our Testimonial */}
         <TestimonialSection />
 
         {/* Screen 4: Corporate Applications / Brought to you by largest creatives */}

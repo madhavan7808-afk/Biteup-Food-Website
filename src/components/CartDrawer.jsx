@@ -7,9 +7,9 @@ import {
   ShoppingBag, 
   ArrowRight, 
   Tag, 
-  Sparkles,
-  CheckCircle2,
-  Bike
+  Sparkles, 
+  CheckCircle2, 
+  Bike 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -31,9 +31,9 @@ export default function CartDrawer({
 
   const rawSubtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const discountAmount = (rawSubtotal * discountPercent) / 100;
-  const freeShippingThreshold = 35;
+  const freeShippingThreshold = 499;
   const isFreeShipping = rawSubtotal >= freeShippingThreshold || rawSubtotal === 0;
-  const shippingFee = isFreeShipping ? 0 : 3.99;
+  const shippingFee = isFreeShipping ? 0 : 49;
   const finalTotal = Math.max(0, rawSubtotal - discountAmount + shippingFee);
 
   const handleApplyPromo = (e) => {
@@ -57,7 +57,6 @@ export default function CartDrawer({
   };
 
   const handleCheckout = () => {
-    // Fire confetti celebration
     confetti({
       particleCount: 120,
       spread: 80,
@@ -66,6 +65,7 @@ export default function CartDrawer({
     });
 
     onCheckoutSuccess({
+      orderId: 'BU-' + Math.floor(100000 + Math.random() * 900000),
       items: cartItems,
       total: finalTotal,
       savings: discountAmount,
@@ -114,7 +114,7 @@ export default function CartDrawer({
               </span>
             ) : (
               <span>
-                Add <strong className="text-red-600">${(freeShippingThreshold - rawSubtotal).toFixed(2)}</strong> more for <strong>FREE Delivery</strong>
+                Add <strong className="text-red-600">₹{(freeShippingThreshold - rawSubtotal).toFixed(2)}</strong> more for <strong>FREE Delivery</strong>
               </span>
             )}
           </div>
@@ -128,11 +128,11 @@ export default function CartDrawer({
                 </div>
                 <h4 className="text-lg font-bold text-stone-800">Your basket is empty</h4>
                 <p className="text-xs text-stone-400 max-w-xs mx-auto mt-1 mb-6">
-                  Explore our juicy burgers, artisan pizzas and loaded sides to start your order!
+                  Explore our Biryani, Butter Chicken, artisan pizzas and loaded sides to start your order!
                 </p>
                 <button
                   onClick={onClose}
-                  className="bg-red-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-md hover:bg-red-700 transition-colors"
+                  className="bg-red-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-md hover:bg-red-700 transition-colors cursor-pointer"
                 >
                   Explore Delicious Menu
                 </button>
@@ -151,7 +151,7 @@ export default function CartDrawer({
                       {item.name}
                     </h5>
                     <p className="text-xs text-stone-500 font-medium">
-                      ${item.price.toFixed(2)} each
+                      ₹{item.price.toFixed(2)} each
                     </p>
 
                     {/* Quantity Selector */}
@@ -159,7 +159,7 @@ export default function CartDrawer({
                       <div className="flex items-center border border-stone-200 rounded-lg bg-stone-50">
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 hover:bg-stone-200 text-stone-600 rounded-l transition-colors"
+                          className="p-1 hover:bg-stone-200 text-stone-600 rounded-l transition-colors cursor-pointer"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -168,14 +168,14 @@ export default function CartDrawer({
                         </span>
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 hover:bg-stone-200 text-stone-600 rounded-r transition-colors"
+                          className="p-1 hover:bg-stone-200 text-stone-600 rounded-r transition-colors cursor-pointer"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
                       </div>
 
                       <span className="text-xs font-extrabold text-stone-900">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ₹{(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -230,12 +230,12 @@ export default function CartDrawer({
               <div className="space-y-1.5 text-xs text-stone-600">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span className="font-bold text-stone-900">${rawSubtotal.toFixed(2)}</span>
+                  <span className="font-bold text-stone-900">₹{rawSubtotal.toFixed(2)}</span>
                 </div>
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-emerald-600 font-bold">
                     <span>Discount (20%)</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
+                    <span>-₹{discountAmount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
@@ -244,13 +244,13 @@ export default function CartDrawer({
                     {shippingFee === 0 ? (
                       <span className="text-emerald-600 uppercase font-black text-[11px]">FREE</span>
                     ) : (
-                      `$${shippingFee.toFixed(2)}`
+                      `₹${shippingFee.toFixed(2)}`
                     )}
                   </span>
                 </div>
                 <div className="border-t border-stone-200 pt-2 flex justify-between text-base font-black text-stone-950 font-heading">
                   <span>Total Amount</span>
-                  <span className="text-red-600 text-lg">${finalTotal.toFixed(2)}</span>
+                  <span className="text-red-600 text-lg">₹{finalTotal.toFixed(2)}</span>
                 </div>
               </div>
 
